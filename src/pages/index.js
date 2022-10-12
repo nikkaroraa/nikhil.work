@@ -18,8 +18,10 @@ export default function Home({ posts }) {
         <header className={styles.header}></header>
 
         <div className="flex flex-col space-y-3">
-          <Link href="/write">
-            <a className="text-lg text-gray-300 hover:text-gray-400">write</a>
+          <Link href="/writings">
+            <a className="text-lg text-gray-300 hover:text-gray-400">
+              writings
+            </a>
           </Link>
           <Link href="/pow">
             <a className="text-lg text-gray-300 hover:text-gray-400">

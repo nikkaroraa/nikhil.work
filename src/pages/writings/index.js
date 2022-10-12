@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getDatabase } from "lib/notion";
 import envVariables from "constants/env";
 import { Text } from "components/post";
-import styles from "./write.module.css";
+import styles from "./writings.module.css";
 
 export default function Write({ posts }) {
   return (
@@ -31,7 +31,7 @@ export default function Write({ posts }) {
             return (
               <li key={post.id} className={styles.post}>
                 <h3 className={styles.postTitle}>
-                  <Link href={`/write/${post.id}`}>
+                  <Link href={`/writings/${post.id}`}>
                     <a>
                       <Text text={post.properties.Name.title} />
                     </a>
@@ -39,7 +39,7 @@ export default function Write({ posts }) {
                 </h3>
 
                 <p className={styles.postDescription}>{date}</p>
-                <Link href={`/write/${post.id}`}>
+                <Link href={`/writings/${post.id}`}>
                   <a> Read post →</a>
                 </Link>
               </li>
