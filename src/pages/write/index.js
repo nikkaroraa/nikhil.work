@@ -1,12 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
-import { getDatabase } from "../lib/notion";
-import { Text } from "./[id].js";
-import styles from "./index.module.css";
 
-export const databaseId = process.env.NOTION_DATABASE_ID;
+import { getDatabase } from "lib/notion";
+import envVariables from "constants/env";
+import { Text } from "components/post";
+import styles from "./write.module.css";
 
-export default function Home({ posts }) {
+export default function Write({ posts }) {
   return (
     <div>
       <Head>
@@ -15,9 +15,7 @@ export default function Home({ posts }) {
       </Head>
 
       <main className={styles.container}>
-        <header className={styles.header}>
-
-        </header>
+        <header className={styles.header}></header>
 
         <h2 className={styles.heading}>All Posts</h2>
         <ol className={styles.posts}>
@@ -33,7 +31,7 @@ export default function Home({ posts }) {
             return (
               <li key={post.id} className={styles.post}>
                 <h3 className={styles.postTitle}>
-                  <Link href={`/${post.id}`}>
+                  <Link href={`/write/${post.id}`}>
                     <a>
                       <Text text={post.properties.Name.title} />
                     </a>
@@ -41,7 +39,7 @@ export default function Home({ posts }) {
                 </h3>
 
                 <p className={styles.postDescription}>{date}</p>
-                <Link href={`/${post.id}`}>
+                <Link href={`/write/${post.id}`}>
                   <a> Read post →</a>
                 </Link>
               </li>
@@ -54,7 +52,7 @@ export default function Home({ posts }) {
 }
 
 export const getStaticProps = async () => {
-  const database = await getDatabase(databaseId);
+  const database = await getDatabase(envVariables.notion.databaseId);
 
   return {
     props: {
